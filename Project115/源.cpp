@@ -26,12 +26,12 @@ public:
 };
 class PT {
 public:
-	int pagNum;//Ò³ºÅ
-	int romNum;//ÎïÀí¿éºÅ
-	bool state;//×´Ì¬
-	pagNode *pN;//LFUÖĞ£¬½ÚµãÖ¸Õë£¬Ò³±í×÷¹şÏ£±íÓÃ
-	int time;//´ıÁË¶à¾Ã
-	int visit;//·ÃÎÊÎ»
+	int pagNum;//é¡µå·
+	int romNum;//ç‰©ç†å—å·
+	bool state;//çŠ¶æ€
+	pagNode *pN;//LFUä¸­ï¼ŒèŠ‚ç‚¹æŒ‡é’ˆï¼Œé¡µè¡¨ä½œå“ˆå¸Œè¡¨ç”¨
+	int time;//å¾…äº†å¤šä¹…
+	int visit;//è®¿é—®ä½
 	PT() :time(99999), pagNum(-1), visit(0), state(false), romNum(-1) {};
 	PT(int rn, int pn) :romNum(rn), pagNum(pn), time(9999), state(false), visit(0) {}
 	void remove() { state = false; romNum = -1; pN = NULL; time = -1; visit = -1; }
@@ -52,10 +52,12 @@ public:
 	int zd;
 	int size;
 	PT *pagTable;
+	virtual void Visit(int add){}
+	virtual void Display(){}
 	double res() { return zd*1.0 / num*1.0; }
 	void displayTable()
 	{
-		cout << "Ò³ºÅ    " << "ÎïÀí¿éºÅ    " << "×´Ì¬Î»    " << endl;
+		cout << "é¡µå·    " << "ç‰©ç†å—å·    " << "çŠ¶æ€ä½    " << endl;
 		for (int i = 0; i < size; i++)
 		{
 			cout << pagTable[i].pagNum << "        " << pagTable[i].romNum << "            " << pagTable[i].state << endl;
@@ -98,13 +100,13 @@ public:
 			p->next->last = p->last;
 		delete p;
 	}
-	//²»ÔÚÄÚ´æ£¬·ÃÎÊ´ÎÊıÎª1
+	//ä¸åœ¨å†…å­˜ï¼Œè®¿é—®æ¬¡æ•°ä¸º1
 	void Insert(int pag, int num)
 	{
-		if (head->next == NULL || head->next->rate != 1)//²»´æÔÚrate£¨1£©
+		if (head->next == NULL || head->next->rate != 1)//ä¸å­˜åœ¨rateï¼ˆ1ï¼‰
 		{
 			cout << "*";
-			//ĞÂ½¨rate(1£©½Úµã
+			//æ–°å»ºrate(1ï¼‰èŠ‚ç‚¹
 			rateNode *p = new rateNode;
 			p->rate = 1;
 			if (head->next != NULL)
@@ -113,7 +115,7 @@ public:
 			p->last = head;
 			head->next = p;
 		}
-		//ĞÂ½¨Ò³½Úµã£¬²åÈërate1½ÚµãÏÂ
+		//æ–°å»ºé¡µèŠ‚ç‚¹ï¼Œæ’å…¥rate1èŠ‚ç‚¹ä¸‹
 		pagNode *q = new pagNode(pag, num);
 		q->next = head->next->pN;
 		q->last = NULL;
@@ -125,13 +127,13 @@ public:
 		pagTable[pag].state = true;
 		pagTable[pag].romNum = q->romNum;
 	}
-	//ÔÚÄÚ´æ£¬·ÃÎÊ´ÎÊı++
+	//åœ¨å†…å­˜ï¼Œè®¿é—®æ¬¡æ•°++
 	void Updata(pagNode *p)
 	{
-		//Á¬½Óµ½µ±Ç°rate+1½Úµã
+		//è¿æ¥åˆ°å½“å‰rate+1èŠ‚ç‚¹
 		if (p->rN->next == NULL || (p->rN->next->rate) != (p->rN->rate) + 1)
 		{
-			//Ã»ÓĞÕâ¸ö½Úµã£¬ĞÂ½¨
+			//æ²¡æœ‰è¿™ä¸ªèŠ‚ç‚¹ï¼Œæ–°å»º
 			rateNode *q = new rateNode;
 			q->rate = (p->rN->rate) + 1;
 			if (p->rN->next != NULL)
@@ -140,22 +142,22 @@ public:
 			q->last = p->rN;
 			p->rN->next = q;
 		}
-		//´ÓÒ³±í½ÚµãÀïÉ¾³ı
+		//ä»é¡µè¡¨èŠ‚ç‚¹é‡Œåˆ é™¤
 		if (p->last != NULL)
 		{
-			//²»ÊÇµÚÒ»¸ö½Úµã
+			//ä¸æ˜¯ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
 			p->last->next = p->next;
 			if (p->next != NULL)
 				p->next->last = p->last;
 		}
 		else
 		{
-			//µÚÒ»¸ö½Úµã
+			//ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
 			if (p->next != NULL)
 				p->next->last = p->last;
 			p->rN->pN = p->next;
 		}
-		//²åÈëµ½ÏÂÒ»¸örate½Úµã
+		//æ’å…¥åˆ°ä¸‹ä¸€ä¸ªrateèŠ‚ç‚¹
 		rateNode *t = p->rN->next;
 		if (t->pN != NULL)
 			t->pN->last = p;
@@ -163,7 +165,7 @@ public:
 		t->pN = p;
 		p->last = NULL;
 		p->rN = t;
-		if (t->last->pN == NULL) {//½Úµã¿Õ
+		if (t->last->pN == NULL) {//èŠ‚ç‚¹ç©º
 			removeRate(t->last);
 		}
 	}
@@ -190,20 +192,20 @@ public:
 				}
 				if (p->last == NULL)
 				{
-					//¶ÔÓ¦µÄrateÏÂÃ»ÓĞÆäËû½Úµã£¬É¾µôrate
+					//å¯¹åº”çš„rateä¸‹æ²¡æœ‰å…¶ä»–èŠ‚ç‚¹ï¼Œåˆ æ‰rate
 					removeRate(head->next);
 				}
 				else
-					p->last->next = NULL;//É¾µô¸Ã½Úµã
+					p->last->next = NULL;//åˆ æ‰è¯¥èŠ‚ç‚¹
 				int romNum = p->romNum;
 				pagTable[p->pagNum].remove();
-				Insert(pag, romNum);//ĞÂ½Úµã²åÈërate£¨1£©µÄÍ·
+				Insert(pag, romNum);//æ–°èŠ‚ç‚¹æ’å…¥rateï¼ˆ1ï¼‰çš„å¤´
 				pagTable[pag].romNum = romNum;
 				pagTable[pag].state = true;
 				delete p;
 			}
 		}
-		else//ÔÚÄÚ´æ
+		else//åœ¨å†…å­˜
 		{
 			Updata(pagTable[pag].pN);
 		}
@@ -214,8 +216,8 @@ class Clock :public Pross
 {
 public:
 	int k;
-	LoopList<PF> *pagFrame;//Ñ­»·Á´±í
-	LinkNode<PF> *now;//ÌÔÌ­Ö¸Õë
+	LoopList<PF> *pagFrame;//å¾ªç¯é“¾è¡¨
+	LinkNode<PF> *now;//æ·˜æ±°æŒ‡é’ˆ
 	void Display()
 	{
 		int t = 0;
@@ -260,12 +262,12 @@ public:
 					pagTable[now->data.pagNum].visit = 0;
 				else
 				{
-					if (now->data.pagNum != -1)//ÓĞÄÚÈİ£¬ÒÆ³ı
+					if (now->data.pagNum != -1)//æœ‰å†…å®¹ï¼Œç§»é™¤
 					{
 						pagTable[now->data.pagNum].remove();
 					}
 					pagTable[pag].visit = 1;
-					now->data.pagNum = pag;//²åÈëÒ³¿ò
+					now->data.pagNum = pag;//æ’å…¥é¡µæ¡†
 					if (now->data.romNum == -1)
 						now->data.romNum = rB[k++];
 					pagTable[pag].romNum = now->data.romNum;
@@ -273,7 +275,7 @@ public:
 					now = now->next;
 					break;
 				}
-				now = now->next;//Ìæ»»Íê³É£¬Ö¸ÕëºóÒÆ
+				now = now->next;//æ›¿æ¢å®Œæˆï¼ŒæŒ‡é’ˆåç§»
 			}
 		}
 		else
@@ -283,7 +285,7 @@ public:
 			{
 				if (p->data.pagNum == pag)
 				{
-					pagTable[p->data.pagNum].visit = 1;//·ÃÎÊ,visitÖÃ1£¬Ö¸Õë²»¶¯
+					pagTable[p->data.pagNum].visit = 1;//è®¿é—®,visitç½®1ï¼ŒæŒ‡é’ˆä¸åŠ¨
 					break;
 				}
 				p = p->next;
@@ -322,7 +324,7 @@ public:
 			zd++;
 			int max = -1;
 			int maxIndex = 0;
-			for (int i = 0; i < PFNUM; i++)//¸üĞÂtime£¬ÕÒ×î´ó£¬ÌÔÌ­
+			for (int i = 0; i < PFNUM; i++)//æ›´æ–°timeï¼Œæ‰¾æœ€å¤§ï¼Œæ·˜æ±°
 			{
 				if (pagFrame[i].pagNum != -1)
 					pagTable[pagFrame[i].pagNum].time++;
@@ -333,20 +335,20 @@ public:
 				}
 			}
 			if (pagFrame[maxIndex].pagNum != -1)
-				pagTable[pagFrame[maxIndex].pagNum].remove();//¸üĞÂÒ³±í
-			//¸üĞÂÒ³¿ò
+				pagTable[pagFrame[maxIndex].pagNum].remove();//æ›´æ–°é¡µè¡¨
+			//æ›´æ–°é¡µæ¡†
 			pagFrame[maxIndex].pagNum = pag;
 			pagTable[pagFrame[maxIndex].pagNum].time = 0;
 			pagTable[pag].insert(pagFrame[maxIndex].romNum);
 		}
 		else
 		{
-			for (int i = 0; i < PFNUM; i++)//¸üĞÂtime
+			for (int i = 0; i < PFNUM; i++)//æ›´æ–°time
 			{
 				if (pagFrame[i].pagNum != -1)
 					pagTable[pagFrame[i].pagNum].time++;
 				if (pagFrame[i].pagNum == pag)
-					pagTable[pagFrame[i].pagNum].time = 0;//·ÃÎÊ£¬timeÇåÁã
+					pagTable[pagFrame[i].pagNum].time = 0;//è®¿é—®ï¼Œtimeæ¸…é›¶
 			}
 		}
 	}
@@ -373,19 +375,21 @@ public:
 		if (pagTable[pag].state == false)
 		{
 			zd++;
-			if (pagFrame.Length() < PFNUM)//ÓĞ¿ÕÏĞ
+			if (pagFrame.Length() < PFNUM)//æœ‰ç©ºé—²
 			{
 				pagTable[pag].romNum = rB[pagFrame.Length()];
 				pagTable[pag].state = true;
-				pagFrame.push(PF(rB[k++], pag));//Èë¶Ó
+				PF a(rB[k++], pag);
+				pagFrame.push(a);//å…¥é˜Ÿ
 			}
 			else
 			{
 				//cout << (pagFrame.getData(1)).pagNum;
 				pagTable[pagFrame.top().pagNum].remove();
 				pagTable[pag].insert(pagFrame.top().romNum);
-				pagFrame.push(PF(pagFrame.top().romNum, pag));//Èë¶Ó
-				pagFrame.pop();//³ö¶ÓÁĞ
+				PF b(pagFrame.top().romNum, pag);
+				pagFrame.push(b);//å…¥é˜Ÿ
+				pagFrame.pop();//å‡ºé˜Ÿåˆ—
 			}
 		}
 	}
@@ -402,16 +406,16 @@ int main()
 	switch (k)
 	{
 	case 1: {
-		a = new FIFO(99300, 5), break;
+		a = new FIFO(99300, 5); break;
 	}
 	case 2: {
-		a = new LRU(99300, 5), break;
+		a = new LRU(99300, 5); break;
 	}
 	case 3: {
-		a = new LFU(99300, 5), break;
+		a = new LFU(99300, 5); break;
 	}
 	case 4: {
-		a = new Clock(99300, 5), break;
+		a = new Clock(99300, 5); break;
 	}
 	default:
 		break;
@@ -419,9 +423,9 @@ int main()
 	int add;
 	while (cin >> add, add != -1)
 	{
-		a.Visit(add);
-		a.Display();
+		a->Visit(add);
+		a->Display();
 	}
-	cout << "È±Ò³ÂÊ" << a.res();
+	cout << "ç¼ºé¡µç‡" << a->res();
 	getchar(); getchar(); getchar(); getchar(); getchar(); getchar(); getchar(); getchar(); getchar(); getchar();
 }
