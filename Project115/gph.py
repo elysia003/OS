@@ -44,7 +44,7 @@ plt.plot(x,fifo,3,color='cyan')
 plt.plot(x,lru,3,color='blue')
 plt.plot(x,lfu,3,color='lime')
 plt.plot(x,clock,3,color='red')
-labels=['FIFO:3752ms','LRU:6683ms','LFU:3278ms','Clock:3733msms','Quick_LRU:2515ms'];
+labels=['FIFO:1.666s','LRU:3.964s','LFU:0.867s','Clock:1.387s','Quick_LRU:0.495ms'];
 color=['cyan','blue','lime','red','white']
 plt.rcParams['font.sans-serif']=['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
@@ -52,7 +52,6 @@ plt.rcParams['axes.unicode_minus'] = False
 patches = [ mpatches.Patch(color=color[i], label="{:s}".format(labels[i]) ) for i in range(len(color)) ] 
 ax=plt.gca()
 box = ax.get_position()
-ax.set_position([box.x0, box.y0, box.width , box.height* 0.8])
+ax.set_position([box.x0, box.y0, box.width , box.height])
 ax.legend(handles=patches, bbox_to_anchor=(1,0.9), ncol=1) #生成legend
 plt.show()
-input()

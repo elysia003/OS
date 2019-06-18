@@ -53,6 +53,8 @@ void LFU::Insert(int pag, int num)
 	pagTable[pag].pN = q;
 	pagTable[pag].state = true;
 	pagTable[pag].romNum = q->romNum;
+	if (q->next == NULL)
+		q->rN->pNE = q;
 }
 //在内存，访问次数++
 void LFU::Updata(pagNode*p)
@@ -84,14 +86,18 @@ void LFU::Updata(pagNode*p)
 			p->next->last = p->last;
 		p->rN->pN = p->next;
 	}
+	if (p->next == NULL)
+		p->rN->pNE = p->last;
 	//插入到下一个rate节点
-	rateNode*t = p->rN->next;
+	rateNode *t = p->rN->next;
 	if (t->pN != NULL)
 		t->pN->last = p;
 	p->next = t->pN;
 	t->pN = p;
 	p->last = NULL;
 	p->rN = t;
+	if (p->next == NULL)
+		p->rN->pNE = p;
 	if (t->last->pN == NULL) {
 		//节点空
 		removeRate(t->last);
@@ -111,11 +117,9 @@ void LFU::Visit(int add)
 		}
 		else
 		{
-			pagNode*p = head->next->pN;
-			while (p->next != NULL)
-			{
-				p = p->next;
-			}
+			pagNode*p = head->next->pNE;
+			if(p->next==NULL)
+				p->rN->pNE = p->last;
 			if (p->last == NULL)
 			{
 				//对应的rate下没有其他节点，删掉rate

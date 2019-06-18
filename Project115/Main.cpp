@@ -78,14 +78,14 @@ int main()
 int k = 0;
 int a[1000000];
 void tt(string path, Pross *p) {
-	FILE *fp = fopen(path.data(), "a");
+	//FILE *fp = fopen(path.data(), "a");
 		for (int j = 0; j < 5900; j++)
 		{
 			p->Visit(a[j]);
 		}
 		double res = p->res();
-		fprintf(fp, "%lf\n", res);
-	fclose(fp);
+		//fprintf(fp, "%lf\n", res);
+	//fclose(fp);
 }
 void test()
 {
@@ -103,30 +103,30 @@ void test()
 		tt("E:\\OS\\fifo.txt", new FIFO(1000000,i));
 	cout << "*";
 	double tim = double(clock() - start) / CLK_TCK;
-	cout << tim;
+	cout << "FIFO:"<<tim<<endl;
 	start = clock();
 	for (int i = 1; i < 500; i++)
 		tt("E:\\OS\\lru.txt", new LRU(1000000,i));
 	cout << "*";
 	tim = double(clock() - start) / CLK_TCK;
-	cout << tim;
+	cout << "LRU:"<<tim<<endl;
 	start = clock();
 	for (int i = 1; i < 500; i++)
 		tt("E:\\OS\\lfu.txt", new LFU(1000000,i));
 	cout << "*";
 	tim = double(clock() - start) / CLK_TCK;
-	cout << tim;
+	cout << "LFU:"<<tim<<endl;
 	start = clock();
 	for (int i = 1; i < 500; i++)
 		tt("E:\\OS\\clock.txt", new Clock(1000000, i));
 	tim = double(clock() - start) / CLK_TCK;
 	cout << '*';
-	cout << tim;
+	cout << "Clock:"<<tim<<endl;
 	start = clock();
 	for (int i = 1; i < 500; i++)
 		tt("E:\\OS\\Q_LRU.txt", new Quick_LRU(1000000, i));
 	tim = double(clock() - start) / CLK_TCK;
 	cout << '*';
-	cout << tim;
+	cout << "Q_LRU:"<<tim;
 	getchar(); getchar(); getchar();
 }
