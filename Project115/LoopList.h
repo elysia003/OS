@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include <stdlib.h>
-#include<queue>	
+#include<queue>
+#include"List.h"
 using namespace std;
 template <class T>
 class LoopList

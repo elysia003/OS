@@ -15,16 +15,64 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="源.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="List.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="LoopList.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Pross.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PT.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PF.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FIFO.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LFU.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LRU.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Quick_LRU.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Pross.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PT.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FIFO.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LFU.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LRU.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Quick_LRU.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

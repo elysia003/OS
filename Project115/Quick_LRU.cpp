@@ -1,0 +1,72 @@
+#include "Quick_LRU.h"
+#include<iostream>
+using namespace std;
+Quick_LRU::Quick_LRU(int ps, int PN) :Pross(ps)
+{
+	PFNUM = PN;
+	head = new pagNode;
+	end = new pagNode;
+	head->next = end;
+	end->last = head;
+	nf = 1;
+	k = 0;
+}
+void  Quick_LRU::Display()
+{
+	pagNode *p = head->next;
+	while (p != end)
+	{
+		cout << "Rom " << p->romNum << "  :  " << p->pagNum << endl;
+		p = p->next;
+	}
+}
+void  Quick_LRU::Insert(int pn, int rn)
+{
+	pagNode*p = new pagNode(pn, rn);
+	p->next = head->next;
+	p->last = head;
+	head->next->last = p;
+	head->next = p;
+	pagTable[pn].pN = p;
+	pagTable[pn].romNum = p->romNum;
+	pagTable[pn].state = true;
+}
+void Quick_LRU::Updata(int pag)
+{
+	pagNode *p = pagTable[pag].pN;
+	p->last->next = p->next;
+	p->next->last = p->last;
+	p->next = head->next;
+	p->last = head;
+	head->next->last = p;
+	head->next = p;
+}
+void Quick_LRU::Visit(int add)
+{
+	num++;
+	int pag = add / 1024;
+	if (pagTable[pag].state == false)
+	{
+		zd++;
+		if (nf)
+		{
+			Insert(pag, rB[k++]);
+			if (k == PFNUM)
+				nf = 0;
+		}
+		else
+		{
+			pagNode *p = end->last;
+			int rn = p->romNum;
+			pagTable[p->pagNum].state = false;
+			end->last->last->next = end;
+			end->last = end->last->last;
+			delete p;
+			Insert(pag, rn);
+		}
+	}
+	else
+	{
+		Updata(pag);
+	}
+}
