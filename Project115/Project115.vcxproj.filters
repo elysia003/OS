@@ -75,4 +75,38 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\OS\gph.py">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="E:\OS\新建 Microsoft Excel 97-2003 工作表 (2).xls">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="E:\OS\新建 Microsoft Excel 97-2003 工作表.xls">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="E:\OS\r_data.py">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="E:\OS\clock.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="E:\OS\data.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="E:\OS\fifo.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="E:\OS\lfu.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="E:\OS\lru.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="E:\OS\Q_LRU.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

@@ -7,7 +7,8 @@ public:
 	int rate;
 	rateNode*next;
 	rateNode*last;
-	pagNode *pN;
+	pagNode *pN;//页表节点头
+	pagNode *pNE;//页表节点尾巴
 };
 class pagNode {
 public:
@@ -17,5 +18,5 @@ public:
 	int romNum;
 	pagNode*next;
 	pagNode*last;
-	rateNode*rN;
+	rateNode*rN;//访问次数节点
 };

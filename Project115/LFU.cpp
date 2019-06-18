@@ -33,7 +33,6 @@ void LFU::Insert(int pag, int num)
 {
 	if (head->next == NULL || head->next->rate != 1)//不存在rate（1）
 	{
-		cout << "*";
 		//新建rate(1）节点
 		rateNode*p = new rateNode;
 		p->rate = 1;
@@ -112,9 +111,7 @@ void LFU::Visit(int add)
 		}
 		else
 		{
-			cout << '#';
 			pagNode*p = head->next->pN;
-			cout << head->next->rate;
 			while (p->next != NULL)
 			{
 				p = p->next;

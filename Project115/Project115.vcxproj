@@ -133,6 +133,20 @@
     <ClInclude Include="Pross.h" />
     <ClInclude Include="Quick_LRU.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\OS\gph.py" />
+    <None Include="E:\OS\r_data.py" />
+    <None Include="E:\OS\新建 Microsoft Excel 97-2003 工作表 (2).xls" />
+    <None Include="E:\OS\新建 Microsoft Excel 97-2003 工作表.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="E:\OS\clock.txt" />
+    <Text Include="E:\OS\data.txt" />
+    <Text Include="E:\OS\fifo.txt" />
+    <Text Include="E:\OS\lfu.txt" />
+    <Text Include="E:\OS\lru.txt" />
+    <Text Include="E:\OS\Q_LRU.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

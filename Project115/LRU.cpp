@@ -43,7 +43,7 @@ void LRU::Visit(int add)
 				maxIndex = i;
 			}
 		}
-		cout << maxIndex;
+		//cout << maxIndex;
 		if (pagFrame[maxIndex].pagNum != -1)
 			pagTable[pagFrame[maxIndex].pagNum].remove();//更新页表
 														 //更新页框

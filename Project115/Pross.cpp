@@ -18,7 +18,7 @@ Pross::Pross(int ps) :size(ps / 1024) {
 	{
 		pagTable[i].pagNum = i;
 	}
-	rB = new int[500];
-	for (int i = 0; i < 500; i++)
+	rB = new int[10000];
+	for (int i = 0; i < 10000; i++)
 		rB[i] = i;
 };

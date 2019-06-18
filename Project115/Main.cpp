@@ -2,6 +2,7 @@
 #include <iostream>
 #include<iomanip>
 #include<Windows.h>
+#include<time.h>
 #include "Pross.h"
 #include "LFU.h"
 #include "Clock.h"
@@ -34,7 +35,7 @@ int main()
 			break;
 		}
 		case 2: {
-			a = new LRU(99300, 5);
+			a = new LRU(1000000, 1);
 			break;
 		}
 		case 3: {
@@ -70,32 +71,62 @@ int main()
 	}
 }
 
+
+
+
+
 int k = 0;
-int a[40000];
+int a[1000000];
 void tt(string path, Pross *p) {
-	FILE *fp = fopen(path, "a");
-	for (int i = 3; i < 300; i += 10) {
-		for (int j = 0; j < 4800; j++)
+	FILE *fp = fopen(path.data(), "a");
+		for (int j = 0; j < 5900; j++)
 		{
 			p->Visit(a[j]);
 		}
 		double res = p->res();
-		cout << i << ":" << res << endl;
 		fprintf(fp, "%lf\n", res);
-	}
 	fclose(fp);
 }
 void test()
 {
 	FILE *fp = fopen("E:\\OS\\data.txt", "r");
-	FILE *fifo = fopen("E:\\OS\\fifo.txt", "a");
-	while (k<4800)
+	while (k<5900)
 	{
 		int t;
 		fscanf(fp, "%d", &t);
 		a[k++] = t;
-		//cout <<k<<"  "<< t << endl;
 	}
 	fclose(fp);
 	//////////////////////////////////////////
+	clock_t start = clock();
+	for (int i = 1; i < 500; i++)
+		tt("E:\\OS\\fifo.txt", new FIFO(1000000,i));
+	cout << "*";
+	double tim = double(clock() - start) / CLK_TCK;
+	cout << tim;
+	start = clock();
+	for (int i = 1; i < 500; i++)
+		tt("E:\\OS\\lru.txt", new LRU(1000000,i));
+	cout << "*";
+	tim = double(clock() - start) / CLK_TCK;
+	cout << tim;
+	start = clock();
+	for (int i = 1; i < 500; i++)
+		tt("E:\\OS\\lfu.txt", new LFU(1000000,i));
+	cout << "*";
+	tim = double(clock() - start) / CLK_TCK;
+	cout << tim;
+	start = clock();
+	for (int i = 1; i < 500; i++)
+		tt("E:\\OS\\clock.txt", new Clock(1000000, i));
+	tim = double(clock() - start) / CLK_TCK;
+	cout << '*';
+	cout << tim;
+	start = clock();
+	for (int i = 1; i < 500; i++)
+		tt("E:\\OS\\Q_LRU.txt", new Quick_LRU(1000000, i));
+	tim = double(clock() - start) / CLK_TCK;
+	cout << '*';
+	cout << tim;
+	getchar(); getchar(); getchar();
 }
