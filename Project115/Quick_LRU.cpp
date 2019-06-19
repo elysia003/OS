@@ -22,7 +22,7 @@ void  Quick_LRU::Display()
 }
 void  Quick_LRU::Insert(int pn, int rn)
 {
-	pagNode*p = new pagNode(pn, rn);
+	pagNode*p = new pagNode(pn, rn);//插到表头
 	p->next = head->next;
 	p->last = head;
 	head->next->last = p;
@@ -33,7 +33,7 @@ void  Quick_LRU::Insert(int pn, int rn)
 }
 void Quick_LRU::Updata(int pag)
 {
-	pagNode *p = pagTable[pag].pN;
+	pagNode *p = pagTable[pag].pN;//移到表头
 	p->last->next = p->next;
 	p->next->last = p->last;
 	p->next = head->next;
@@ -56,6 +56,7 @@ void Quick_LRU::Visit(int add)
 		}
 		else
 		{
+			//淘汰表尾
 			pagNode *p = end->last;
 			int rn = p->blockNum;
 			pagTable[p->pagNum].state = false;

@@ -21,14 +21,13 @@ void LFU::Display()
 		p = p->next;
 	}
 }
-void LFU::removeRate(rateNode*p)
+void LFU::removeRate(rateNode*p)//删除rate节点
 {
 	p->last->next = p->next;
 	if (p->next != NULL)
 		p->next->last = p->last;
 	delete p;
 }
-//不在内存，访问次数为1
 void LFU::Insert(int pag, int num)
 {
 	if (head->next == NULL || head->next->rate != 1)//不存在rate（1）
@@ -56,7 +55,6 @@ void LFU::Insert(int pag, int num)
 	if (q->next == NULL)
 		q->rN->pNE = q;
 }
-//在内存，访问次数++
 void LFU::Updata(pagNode*p)
 {
 	//连接到当前rate+1节点
@@ -110,7 +108,7 @@ void LFU::Visit(int add)
 	if (pagTable[pag].state == false)
 	{
 		zd++;
-		if (nf) {
+		if (nf) {//框不满
 			Insert(pag, rB[k++]);
 			if (k == PFNUM)
 				nf = 0;
@@ -118,11 +116,11 @@ void LFU::Visit(int add)
 		else
 		{
 			pagNode*p = head->next->pNE;
-			if(p->next==NULL)
+			if(p->next==NULL)//淘汰访问次数最少且来的最早的节点，head->next->pNE;
 				p->rN->pNE = p->last;
 			if (p->last == NULL)
 			{
-				//对应的rate下没有其他节点，删掉rate
+				//对应的rate下没有其他节点，删掉rate及其节点
 				removeRate(head->next);
 			}
 			else

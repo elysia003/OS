@@ -42,7 +42,7 @@ void Clock::Visit(int add)
 			zd++;
 			while (true)
 			{
-				if (pagTable[now->data.pagNum].visit == 1)
+				if (pagTable[now->data.pagNum].visit == 1)//f·ÃÎÊÎ»1ÔòÖÃ0
 					pagTable[now->data.pagNum].visit = 0;
 				else
 				{
