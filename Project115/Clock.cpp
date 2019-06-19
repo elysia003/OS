@@ -9,9 +9,9 @@ void Clock::Display()
 		while (p->next != pagFrame->head)
 		{
 			if (p->data.pagNum != -1)
-				cout << "Rom" << (p->data).romNum << ": " << (p->data).pagNum << "  visit:" << pagTable[(p->data).pagNum].visit;
+				cout << "Block" << (p->data).blockNum << ": " << (p->data).pagNum << "  visit:" << pagTable[(p->data).pagNum].visit;
 			else
-				cout << "Rom" << t << ": " << '*' << "  visit:" << 0;
+				cout << "Block" << t << ": " << '*' << "  visit:" << 0;
 			if (now == p)
 				cout << "<--";
 			p = p->next;
@@ -19,9 +19,9 @@ void Clock::Display()
 			cout << endl;
 		}
 		if (p->data.pagNum != -1)
-			cout << "Rom" << (p->data).romNum << " :" << (p->data).pagNum << "  visit:" << pagTable[(p->data).pagNum].visit;
+			cout << "Block" << (p->data).blockNum << " :" << (p->data).pagNum << "  visit:" << pagTable[(p->data).pagNum].visit;
 		else
-			cout << "Rom" << t << ": " << '*' << "  visit:" << 0;
+			cout << "Block" << t << ": " << '*' << "  visit:" << 0;
 		if (now == p)
 			cout << "<--";
 		cout << endl;
@@ -52,9 +52,9 @@ void Clock::Visit(int add)
 					}
 					pagTable[pag].visit = 1;
 					now->data.pagNum = pag;//²åÈëÒ³¿ò
-					if (now->data.romNum == -1)
-						now->data.romNum = rB[k++];
-					pagTable[pag].romNum = now->data.romNum;
+					if (now->data.blockNum == -1)
+						now->data.blockNum = rB[k++];
+					pagTable[pag].blockNum = now->data.blockNum;
 					pagTable[pag].state = true;
 					now = now->next;
 					break;

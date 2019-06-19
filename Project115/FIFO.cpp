@@ -19,7 +19,7 @@ void FIFO::Visit(int add)
 		zd++;
 		if (pagFrame.Length() < PFNUM)//有空闲
 		{
-			pagTable[pag].romNum = rB[pagFrame.Length()];
+			pagTable[pag].blockNum = rB[pagFrame.Length()];
 			pagTable[pag].state = true;
 			PF a(rB[k++], pag);
 			pagFrame.push(a);//入队
@@ -28,8 +28,8 @@ void FIFO::Visit(int add)
 		{
 			//cout << (pagFrame.getData(1)).pagNum;
 			pagTable[pagFrame.top().pagNum].remove();
-			pagTable[pag].insert(pagFrame.top().romNum);
-			PF b(pagFrame.top().romNum, pag);
+			pagTable[pag].insert(pagFrame.top().blockNum);
+			PF b(pagFrame.top().blockNum, pag);
 			pagFrame.push(b);//入队
 			pagFrame.pop();//出队列
 		}

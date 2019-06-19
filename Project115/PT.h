@@ -3,7 +3,7 @@
 class PT{
 public:
 	int pagNum;//页号
-	int romNum;//物理块号
+	int blockNum;//物理块号
 	bool state;//状态
 	pagNode*pN;//LFU中，节点指针，页表作哈希表用
 	int time;//待了多久

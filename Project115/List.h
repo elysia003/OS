@@ -68,7 +68,7 @@ public:
 		LinkNode<T> *p = head->next;
 		while (p != NULL)
 		{
-			cout << "Rom "<<(p->data).romNum <<": ";
+			cout << "Block "<<(p->data).blockNum <<": ";
 			cout<<(p->data).pagNum<<"   ";
 			cout << endl;
 			p = p->next;

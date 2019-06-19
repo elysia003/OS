@@ -8,7 +8,7 @@ LRU::LRU(int ps, int PN) :Pross(ps)
 	for (int i = 0; i < PFNUM; i++)
 	{
 		pagFrame[i].pagNum = -1;
-		pagFrame[i].romNum = rB[i];
+		pagFrame[i].blockNum = rB[i];
 	}
 	num = 0; zd = 0; full = 0;
 }
@@ -17,7 +17,7 @@ void LRU::Display()
 	for (int i = 0; i < PFNUM; i++)
 	{
 		if (pagFrame[i].pagNum != -1)
-			cout << "Rom" << pagFrame[i].romNum << ": " << pagFrame[i].pagNum << " time:" << pagTable[pagFrame[i].pagNum].time << endl;
+			cout << "Block" << pagFrame[i].blockNum << ": " << pagFrame[i].pagNum << " time:" << pagTable[pagFrame[i].pagNum].time << endl;
 	}
 }
 void LRU::Visit(int add)
@@ -49,7 +49,7 @@ void LRU::Visit(int add)
 														 //¸üÐÂÒ³¿ò
 		pagFrame[maxIndex].pagNum = pag;
 		pagTable[pag].time = 0;
-		pagTable[pag].insert(pagFrame[maxIndex].romNum);
+		pagTable[pag].insert(pagFrame[maxIndex].blockNum);
 	}
 	else
 	{

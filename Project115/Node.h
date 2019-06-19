@@ -12,10 +12,10 @@ public:
 };
 class pagNode {
 public:
-	pagNode(int pn, int rn) :pagNum(pn), romNum(rn), next(NULL), last(NULL) {};
+	pagNode(int pn, int rn) :pagNum(pn), blockNum(rn), next(NULL), last(NULL) {};
 	pagNode() {}
 	int pagNum;
-	int romNum;
+	int blockNum;
 	pagNode*next;
 	pagNode*last;
 	rateNode*rN;//访问次数节点

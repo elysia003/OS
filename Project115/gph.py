@@ -2,7 +2,7 @@ import numpy as np;
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from IPython.core.pylabtools import figsize
+fblock IPython.core.pylabtools import figsize
 x=[i for i in range(0,490)]
 print(x)
 fifo=[0.0]*490

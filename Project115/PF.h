@@ -2,7 +2,7 @@
 class PF {
 public:
 	int pagNum;
-	int romNum;
-	PF(int rn, int pn) :romNum(rn), pagNum(pn) {}
-	PF() {pagNum = -1;romNum = -1;}
+	int blockNum;
+	PF(int rn, int pn) :blockNum(rn), pagNum(pn) {}
+	PF() {pagNum = -1;blockNum = -1;}
 };

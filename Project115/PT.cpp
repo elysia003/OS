@@ -1,19 +1,19 @@
 #include "PT.h"
-PT::PT() :time(99999), pagNum(-1), visit(0), state(false), romNum(-1) {
+PT::PT() :time(99999), pagNum(-1), visit(0), state(false), blockNum(-1) {
 
 };
-PT::PT(int rn, int pn) :romNum(rn), pagNum(pn), time(99999), state(false), visit(0) {
+PT::PT(int rn, int pn) :blockNum(rn), pagNum(pn), time(99999), state(false), visit(0) {
 
 };
 void PT::remove() {
 	state = false;
-	romNum = -1;
+	blockNum = -1;
 	pN = NULL;
 	time = -1;
 	visit = -1;
 };
 void PT::insert(int rn) {
-	romNum = rn;
+	blockNum = rn;
 	state = true;
 
 };

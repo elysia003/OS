@@ -76,17 +76,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="E:\OS\gph.py">
-      <Filter>源文件</Filter>
-    </None>
     <None Include="E:\OS\新建 Microsoft Excel 97-2003 工作表 (2).xls">
       <Filter>资源文件</Filter>
     </None>
     <None Include="E:\OS\新建 Microsoft Excel 97-2003 工作表.xls">
       <Filter>资源文件</Filter>
-    </None>
-    <None Include="E:\OS\r_data.py">
-      <Filter>源文件</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

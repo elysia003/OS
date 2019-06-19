@@ -31,23 +31,23 @@ int main()
 		switch (k)
 		{
 		case 1: {
-			a = new FIFO(200000, 5);
+			a = new FIFO(200000, 3);
 			break;
 		}
 		case 2: {
-			a = new LRU(1000000, 1);
+			a = new LRU(1000000, 3);
 			break;
 		}
 		case 3: {
-			a = new Quick_LRU(99300, 5);
+			a = new Quick_LRU(99300, 3);
 			break;
 		}
 		case 4: {
-			a = new LFU(99300, 5);
+			a = new LFU(99300, 3);
 			break;
 		}
 		case 5: {
-			a = new Clock(99300, 5);
+			a = new Clock(99300, 3);
 			break;
 		}
 		case 6: {
@@ -60,6 +60,7 @@ int main()
 		if (k == 6)
 			continue;
 		int add;
+		system("cls");
 		while (cin >> add, add != -1)
 		{
 			a->Visit(add);

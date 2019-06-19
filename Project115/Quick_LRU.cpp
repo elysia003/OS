@@ -16,7 +16,7 @@ void  Quick_LRU::Display()
 	pagNode *p = head->next;
 	while (p != end)
 	{
-		cout << "Rom " << p->romNum << "  :  " << p->pagNum << endl;
+		cout << "Block " << p->blockNum << "  :  " << p->pagNum << endl;
 		p = p->next;
 	}
 }
@@ -28,7 +28,7 @@ void  Quick_LRU::Insert(int pn, int rn)
 	head->next->last = p;
 	head->next = p;
 	pagTable[pn].pN = p;
-	pagTable[pn].romNum = p->romNum;
+	pagTable[pn].blockNum = p->blockNum;
 	pagTable[pn].state = true;
 }
 void Quick_LRU::Updata(int pag)
@@ -57,7 +57,7 @@ void Quick_LRU::Visit(int add)
 		else
 		{
 			pagNode *p = end->last;
-			int rn = p->romNum;
+			int rn = p->blockNum;
 			pagTable[p->pagNum].state = false;
 			end->last->last->next = end;
 			end->last = end->last->last;

@@ -15,7 +15,7 @@ void LFU::Display()
 		pagNode*q = p->pN;
 		while (q != NULL)
 		{
-			cout << "ROM" << q->romNum << ": " << q->pagNum << "rate: " << p->rate << endl;
+			cout << "Block" << q->blockNum << ": " << q->pagNum << "   rate: " << p->rate << endl;
 			q = q->next;
 		}
 		p = p->next;
@@ -52,7 +52,7 @@ void LFU::Insert(int pag, int num)
 	head->next->pN = q;
 	pagTable[pag].pN = q;
 	pagTable[pag].state = true;
-	pagTable[pag].romNum = q->romNum;
+	pagTable[pag].blockNum = q->blockNum;
 	if (q->next == NULL)
 		q->rN->pNE = q;
 }
@@ -127,10 +127,10 @@ void LFU::Visit(int add)
 			}
 			else
 				p->last->next = NULL;//删掉该节点
-			int romNum = p->romNum;
+			int blockNum = p->blockNum;
 			pagTable[p->pagNum].remove();
-			Insert(pag, romNum);//新节点插入rate（1）的头
-			pagTable[pag].romNum = romNum;
+			Insert(pag, blockNum);//新节点插入rate（1）的头
+			pagTable[pag].blockNum = blockNum;
 			pagTable[pag].state = true;
 			delete p;
 		}

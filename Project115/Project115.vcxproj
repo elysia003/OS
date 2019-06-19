@@ -134,8 +134,6 @@
     <ClInclude Include="Quick_LRU.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="E:\OS\gph.py" />
-    <None Include="E:\OS\r_data.py" />
     <None Include="E:\OS\新建 Microsoft Excel 97-2003 工作表 (2).xls" />
     <None Include="E:\OS\新建 Microsoft Excel 97-2003 工作表.xls" />
   </ItemGroup>

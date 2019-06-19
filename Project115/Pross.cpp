@@ -9,7 +9,7 @@ void Pross::displayTable()
 	cout << "Ò³ºÅ    " << "ÎïÀí¿éºÅ    " << "×´Ì¬Î»    " << endl;
 	for (int i = 0; i < size; i++)
 	{
-		cout << pagTable[i].pagNum << "        " << pagTable[i].romNum << "            " << pagTable[i].state << endl;
+		cout << pagTable[i].pagNum << "        " << pagTable[i].blockNum << "            " << pagTable[i].state << endl;
 	}
 };
 Pross::Pross(int ps) :size(ps / 1024) {
